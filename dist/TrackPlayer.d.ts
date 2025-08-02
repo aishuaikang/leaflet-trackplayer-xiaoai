@@ -102,7 +102,11 @@ declare global {
              */
             on(
                 type: "start" | "pause" | "finished" | "progress",
-                fn: (...args: any[]) => void
+                fn: (
+                    progress: TrackPlayerOptions["progress"],
+                    latlng: L.LatLng,
+                    index: number
+                ) => void
             ): this;
             /**
              * 事件移除监听器
