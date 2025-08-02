@@ -1,0 +1,44 @@
+{
+    "name": "leaflet-trackplayer-xiaoai",
+    "version": "2.0.4",
+    "description": "一个 Leaflet 轨迹播放插件，可以根据实际行进方向自动旋转标记图标，动态调整已行进和未行进路径的颜色以清晰显示当前进度。支持自定义行驶速度等功能，并提供完整的 TypeScript 类型定义。",
+    "main": "dist/leaflet-trackplayer.umd.cjs",
+    "module": "dist/leaflet-trackplayer.js",
+    "types": "dist/TrackPlayer.d.ts",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "gis",
+        "leaflet",
+        "轨迹播放",
+        "轨迹回放",
+        "地图插件",
+        "typescript",
+        "trajectory",
+        "track",
+        "animation"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/weijun-lab/Leaflet.TrackPlayer.git"
+    },
+    "author": "ask",
+    "license": "MIT",
+    "devDependencies": {
+        "@turf/turf": "^6.5.0",
+        "@types/leaflet": "^1.9.20",
+        "leaflet": "^1.9.4",
+        "leaflet-polylinedecorator": "^1.6.0",
+        "leaflet-rotatedmarker": "^0.2.0",
+        "typescript": "^5.9.2",
+        "vite": "^5.0.12",
+        "vite-plugin-dts": "^4.5.4"
+    }
+}
