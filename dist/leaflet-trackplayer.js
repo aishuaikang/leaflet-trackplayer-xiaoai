@@ -727,7 +727,11 @@ _.TrackPlayer = class {
               pixelSize: 5,
               headAngle: 75,
               polygon: !1,
-              pathOptions: { stroke: !0, weight: 3, color: "#fff" }
+              pathOptions: {
+                stroke: !0,
+                weight: 3,
+                color: "#fff"
+              }
             })
           }
         ]
@@ -761,7 +765,10 @@ _.TrackPlayer = class {
         );
       }
     }
-    let s = this.track.geometry.coordinates.map(([t, n]) => [n, t]);
+    let s = this.track.geometry.coordinates.map(([t, n]) => [
+      n,
+      t
+    ]);
     return this.notPassedLine = _.polyline(s, {
       weight: this.options.weight,
       color: this.options.notPassedLineColor
@@ -813,7 +820,11 @@ _.TrackPlayer = class {
       );
     }
     if (this.walkedDistance > 0) {
-      let r = V(this.track, 0, this.walkedDistance);
+      let r = V(
+        this.track,
+        0,
+        this.walkedDistance
+      );
       this.passedLine.setLatLngs(
         r.geometry.coordinates.map(([o, f]) => [f, o])
       );

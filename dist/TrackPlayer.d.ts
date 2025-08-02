@@ -64,40 +64,55 @@ declare global {
             addTo(map: L.Map): this;
 
             /**
+             * 从地图中移除
+             */
+            remove(): void;
+
+            /**
              * 开始播放
              */
-            start(): this;
+            start(): void;
 
             /**
              * 暂停播放
              */
-            pause(): this;
+            pause(): void;
 
             /**
-             * 停止播放
+             * 恢复播放
              */
-            stop(): this;
+            startAction(): void;
 
-            /**
-             * 重置播放器
-             */
-            reset(): this;
+            playAction(): void;
+
+            setSpeedAction(speed: number): void;
+
+            setSpeed(speed: number, wait?: number): Promise<void>;
 
             /**
              * 设置进度
              * @param progress 进度值 (0-1)
              */
-            setProgress(progress: number): this;
+            setProgress(progress: number): void;
 
             /**
-             * 获取当前进度
+             * 事件监听器
+             * @param type 事件类型 start | pause | finished | progress
+             * @param fn 事件处理函数
              */
-            getProgress(): number;
-
+            on(
+                type: "start" | "pause" | "finished" | "progress",
+                fn: (...args: any[]) => void
+            ): this;
             /**
-             * 从地图中移除
+             * 事件移除监听器
+             * @param type 事件类型
+             * @param fn 事件处理函数
              */
-            remove(): this;
+            off(
+                type: "start" | "pause" | "finished" | "progress",
+                fn: (...args: any[]) => void
+            ): this;
         }
     }
 }
