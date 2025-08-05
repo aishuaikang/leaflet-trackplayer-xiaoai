@@ -70,6 +70,7 @@ L.TrackPlayer = class {
             this.marker = L.marker([start[1], start[0]], {
                 icon: this.options.markerIcon,
             }).addTo(this.map);
+            this.marker.isTrackPlayerMarker = true; // 标记为 TrackPlayer 的标记
             if (this.options.markerRotation) {
                 let coordinates = this.track.geometry.coordinates;
                 this.marker.setRotationAngle(
