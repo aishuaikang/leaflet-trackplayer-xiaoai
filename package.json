@@ -1,6 +1,6 @@
 {
     "name": "leaflet-trackplayer-xiaoai",
-    "version": "2.0.10",
+    "version": "2.0.11",
     "description": "一个 Leaflet 轨迹播放插件，可以根据实际行进方向自动旋转标记图标，动态调整已行进和未行进路径的颜色以清晰显示当前进度。支持自定义行驶速度等功能，并提供完整的 TypeScript 类型定义。",
     "main": "dist/leaflet-trackplayer.umd.cjs",
     "module": "dist/leaflet-trackplayer.js",

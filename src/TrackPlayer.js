@@ -71,9 +71,6 @@ L.TrackPlayer = class {
                 icon: this.options.markerIcon,
             }).addTo(this.map);
 
-            // 设置marker的占有
-            if (!this.marker.own) this.marker.own = L.TrackPlayer.name;
-
             if (this.options.markerRotation) {
                 let coordinates = this.track.geometry.coordinates;
                 this.marker.setRotationAngle(
