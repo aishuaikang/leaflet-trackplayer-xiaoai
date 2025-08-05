@@ -70,11 +70,10 @@ L.TrackPlayer = class {
             this.marker = L.marker([start[1], start[0]], {
                 icon: this.options.markerIcon,
             }).addTo(this.map);
-            if (Array.isArray(this.marker.order)) {
-                this.marker.order.push(L.TrackPlayer.name);
-            } else {
-                this.marker.order = [L.TrackPlayer.name];
-            }
+
+            // 设置marker的占有
+            if (!this.marker.own) this.marker.own = L.TrackPlayer.name;
+
             if (this.options.markerRotation) {
                 let coordinates = this.track.geometry.coordinates;
                 this.marker.setRotationAngle(
