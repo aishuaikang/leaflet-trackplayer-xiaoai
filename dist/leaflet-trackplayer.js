@@ -14,7 +14,7 @@ var N = (e, r, t) => new Promise((n, s) => {
   }, u = (l) => l.done ? n(l.value) : Promise.resolve(l.value).then(o, f);
   u((t = t.apply(e, r)).next());
 });
-import _ from "leaflet";
+import M from "leaflet";
 var b = 63710088e-1, Z = {
   centimeters: b * 100,
   centimetres: b * 100,
@@ -79,7 +79,7 @@ function F(e) {
   var r = e % (2 * Math.PI);
   return r * 180 / Math.PI;
 }
-function M(e) {
+function _(e) {
   var r = e % 360;
   return r * Math.PI / 180;
 }
@@ -332,18 +332,18 @@ function et(e) {
 var it = typeof globalThis != "undefined" ? globalThis : typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : {};
 function U(e, r, t) {
   t === void 0 && (t = {});
-  var n = E(e), s = E(r), o = M(s[1] - n[1]), f = M(s[0] - n[0]), u = M(n[1]), l = M(s[1]), p = Math.pow(Math.sin(o / 2), 2) + Math.pow(Math.sin(f / 2), 2) * Math.cos(u) * Math.cos(l);
+  var n = E(e), s = E(r), o = _(s[1] - n[1]), f = _(s[0] - n[0]), u = _(n[1]), l = _(s[1]), p = Math.pow(Math.sin(o / 2), 2) + Math.pow(Math.sin(f / 2), 2) * Math.cos(u) * Math.cos(l);
   return K(2 * Math.atan2(Math.sqrt(p), Math.sqrt(1 - p)), t.units);
 }
 function B(e, r, t, n) {
   n === void 0 && (n = {});
-  var s = E(e), o = M(s[0]), f = M(s[1]), u = M(t), l = Q(r, n.units), p = Math.asin(Math.sin(f) * Math.cos(l) + Math.cos(f) * Math.sin(l) * Math.cos(u)), v = o + Math.atan2(Math.sin(u) * Math.sin(l) * Math.cos(f), Math.cos(l) - Math.sin(f) * Math.sin(p)), g = F(v), k = F(p);
+  var s = E(e), o = _(s[0]), f = _(s[1]), u = _(t), l = Q(r, n.units), p = Math.asin(Math.sin(f) * Math.cos(l) + Math.cos(f) * Math.sin(l) * Math.cos(u)), v = o + Math.atan2(Math.sin(u) * Math.sin(l) * Math.cos(f), Math.cos(l) - Math.sin(f) * Math.sin(p)), g = F(v), k = F(p);
   return O([g, k], n.properties);
 }
 function T(e, r, t) {
   if (t === void 0 && (t = {}), t.final === !0)
     return rt(e, r);
-  var n = E(e), s = E(r), o = M(n[0]), f = M(s[0]), u = M(n[1]), l = M(s[1]), p = Math.sin(f - o) * Math.cos(l), v = Math.cos(u) * Math.sin(l) - Math.sin(u) * Math.cos(l) * Math.cos(f - o);
+  var n = E(e), s = E(r), o = _(n[0]), f = _(s[0]), u = _(n[1]), l = _(s[1]), p = Math.sin(f - o) * Math.cos(l), v = Math.cos(u) * Math.sin(l) - Math.sin(u) * Math.cos(l) * Math.cos(f - o);
   return F(Math.atan2(p, v));
 }
 function rt(e, r) {
@@ -395,7 +395,7 @@ function V(e, r, t, n) {
 }
 (function(e, r) {
   (function(t, n) {
-    n(_);
+    n(M);
   })(it, function(t) {
     t = t && t.hasOwnProperty("default") ? t.default : t;
     function n(a, i) {
@@ -703,10 +703,10 @@ function V(e, r, t, n) {
     }
   });
 })();
-_.TrackPlayer = class {
+M.TrackPlayer = class {
   constructor(e, r = {}) {
     var n, s, o, f, u, l, p, v, g, k;
-    let t = _.polyline(e)._latlngs;
+    let t = M.polyline(e)._latlngs;
     this.track = S(
       t.map(({ lng: a, lat: i }) => [a, i])
     ), this.distanceSlice = [0], this.track.geometry.coordinates.forEach((a, i, h) => {
@@ -723,7 +723,7 @@ _.TrackPlayer = class {
           {
             offset: 30,
             repeat: 60,
-            symbol: _.Symbol.arrowHead({
+            symbol: M.Symbol.arrowHead({
               pixelSize: 5,
               headAngle: 75,
               polygon: !1,
@@ -754,9 +754,9 @@ _.TrackPlayer = class {
     if (this.addedToMap) return;
     if (this.map = e, this.addedToMap = !0, this.options.markerIcon) {
       let t = this.track.geometry.coordinates[0];
-      if (this.marker = _.marker([t[1], t[0]], {
+      if (this.marker = M.marker([t[1], t[0]], {
         icon: this.options.markerIcon
-      }).addTo(this.map), this.marker.isTrackPlayerMarker = !0, this.options.markerRotation) {
+      }).addTo(this.map), Array.isArray(this.marker.order) ? this.marker.order.push(M.TrackPlayer.name) : this.marker.order = [M.TrackPlayer.name], this.options.markerRotation) {
         let n = this.track.geometry.coordinates;
         this.marker.setRotationAngle(
           T(n[0], n[1]) / 2 + this.options.markerRotationOffset / 2
@@ -769,13 +769,13 @@ _.TrackPlayer = class {
       n,
       t
     ]);
-    return this.notPassedLine = _.polyline(r, {
+    return this.notPassedLine = M.polyline(r, {
       weight: this.options.weight,
       color: this.options.notPassedLineColor
-    }).addTo(this.map), this.passedLine = _.polyline([], {
+    }).addTo(this.map), this.passedLine = M.polyline([], {
       weight: this.options.weight,
       color: this.options.passedLineColor
-    }).addTo(this.map), this.polylineDecorator = _.polylineDecorator(
+    }).addTo(this.map), this.polylineDecorator = M.polylineDecorator(
       r,
       this.options.polylineDecoratorOptions
     ).addTo(this.map), this.initProgress && this.setProgress(this.initProgress), this;
@@ -847,7 +847,7 @@ _.TrackPlayer = class {
     if (this.options.progress = Math.min(1, this.walkedDistance / r), this.listenedEvents.progressCallback.forEach(
       (s) => s(
         this.options.progress,
-        _.latLng(...this.markerPoint),
+        M.latLng(...this.markerPoint),
         this.trackIndex
       )
     ), this.walkedDistance >= r && (this.walkedDistance = r, this.finished = !0, this.listenedEvents.finished.forEach((s) => s()), this.options.markerRotation && this.marker)) {
