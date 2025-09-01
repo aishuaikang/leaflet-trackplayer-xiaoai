@@ -5,16 +5,32 @@ declare global {
         interface TrackPlayerOptions {
             /** 播放速度，单位：km/h，默认 600 */
             speed?: number;
-            /** 轨迹线宽度，默认 8 */
+            /** 轨迹线宽度，默认 5 */
             weight?: number;
+            /** 已走过轨迹线宽度，默认 weight + 1 */
+            passedLineWeight?: number;
+            /** 未走过轨迹线宽度，默认 weight */
+            notPassedLineWeight?: number;
             /** 自定义标记图标 */
             markerIcon?: L.Icon;
+            /** 是否显示箭头，默认 true */
+            showArrows?: boolean;
+            /** 箭头颜色，默认 "#fff" */
+            arrowColor?: string;
+            /** 箭头大小，默认 5 */
+            arrowSize?: number;
+            /** 箭头透明度，默认 1.0 */
+            arrowOpacity?: number;
             /** 折线装饰器选项 */
             polylineDecoratorOptions?: any;
             /** 已经过路径颜色，默认 "#0000ff" */
             passedLineColor?: string;
             /** 未经过路径颜色，默认 "#ff0000" */
             notPassedLineColor?: string;
+            /** 已走过轨迹线透明度，默认 1.0 */
+            passedLineOpacity?: number;
+            /** 未走过轨迹线透明度，默认 1.0 */
+            notPassedLineOpacity?: number;
             /** 是否自动平移到当前位置，默认 true */
             panTo?: boolean;
             /** 标记旋转原点，默认 "center" */
@@ -66,34 +82,76 @@ declare global {
             /**
              * 从地图中移除
              */
-            remove(): void;
+            remove(): this;
 
             /**
              * 开始播放
              */
-            start(): void;
+            start(): this;
 
             /**
              * 暂停播放
              */
-            pause(): void;
+            pause(): this;
 
             /**
-             * 恢复播放
+             * 设置播放速度
              */
-            startAction(): void;
-
-            playAction(): void;
-
-            setSpeedAction(speed: number): void;
-
-            setSpeed(speed: number, wait?: number): Promise<void>;
+            setSpeed(speed: number, wait?: number): Promise<this>;
 
             /**
              * 设置进度
              * @param progress 进度值 (0-1)
              */
-            setProgress(progress: number): void;
+            setProgress(progress: number): this;
+
+            /**
+             * 更新轨迹线样式
+             * @param styleOptions 样式选项
+             */
+            updateLineStyle(styleOptions: {
+                passedLineColor?: string;
+                notPassedLineColor?: string;
+                passedLineWeight?: number;
+                notPassedLineWeight?: number;
+                passedLineOpacity?: number;
+                notPassedLineOpacity?: number;
+            }): this;
+
+            /**
+             * 更新箭头样式
+             * @param arrowOptions 箭头选项
+             */
+            updateArrowStyle(arrowOptions: {
+                color?: string;
+                size?: number;
+                opacity?: number;
+                show?: boolean;
+            }): this;
+
+            /**
+             * 显示箭头
+             */
+            showArrows(): this;
+
+            /**
+             * 隐藏箭头
+             */
+            hideArrows(): this;
+
+            /**
+             * 获取当前状态
+             */
+            getState(): {
+                progress: number;
+                isPaused: boolean;
+                finished: boolean;
+                speed: number;
+                distance: number;
+                walkedDistance: number;
+                currentPosition: L.LatLng | null;
+                trackIndex: number;
+            };
 
             /**
              * 事件监听器

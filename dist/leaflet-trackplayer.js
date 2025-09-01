@@ -1,172 +1,172 @@
-var N = (e, s, t) => new Promise((n, r) => {
-  var o = (l) => {
+var W = (t, i, e) => new Promise((s, n) => {
+  var h = (l) => {
     try {
-      u(t.next(l));
-    } catch (p) {
-      r(p);
+      u(e.next(l));
+    } catch (f) {
+      n(f);
     }
-  }, f = (l) => {
+  }, c = (l) => {
     try {
-      u(t.throw(l));
-    } catch (p) {
-      r(p);
+      u(e.throw(l));
+    } catch (f) {
+      n(f);
     }
-  }, u = (l) => l.done ? n(l.value) : Promise.resolve(l.value).then(o, f);
-  u((t = t.apply(e, s)).next());
+  }, u = (l) => l.done ? s(l.value) : Promise.resolve(l.value).then(h, c);
+  u((e = e.apply(t, i)).next());
 });
-import _ from "leaflet";
-var b = 63710088e-1, Z = {
-  centimeters: b * 100,
-  centimetres: b * 100,
-  degrees: b / 111325,
-  feet: b * 3.28084,
-  inches: b * 39.37,
-  kilometers: b / 1e3,
-  kilometres: b / 1e3,
-  meters: b,
-  metres: b,
-  miles: b / 1609.344,
-  millimeters: b * 1e3,
-  millimetres: b * 1e3,
-  nauticalmiles: b / 1852,
+import b from "leaflet";
+var k = 63710088e-1, Z = {
+  centimeters: k * 100,
+  centimetres: k * 100,
+  degrees: k / 111325,
+  feet: k * 3.28084,
+  inches: k * 39.37,
+  kilometers: k / 1e3,
+  kilometres: k / 1e3,
+  meters: k,
+  metres: k,
+  miles: k / 1609.344,
+  millimeters: k * 1e3,
+  millimetres: k * 1e3,
+  nauticalmiles: k / 1852,
   radians: 1,
-  yards: b * 1.0936
+  yards: k * 1.0936
 };
-function C(e, s, t) {
-  t === void 0 && (t = {});
-  var n = { type: "Feature" };
-  return (t.id === 0 || t.id) && (n.id = t.id), t.bbox && (n.bbox = t.bbox), n.properties = s || {}, n.geometry = e, n;
+function z(t, i, e) {
+  e === void 0 && (e = {});
+  var s = { type: "Feature" };
+  return (e.id === 0 || e.id) && (s.id = e.id), e.bbox && (s.bbox = e.bbox), s.properties = i || {}, s.geometry = t, s;
 }
-function O(e, s, t) {
-  if (t === void 0 && (t = {}), !e)
+function A(t, i, e) {
+  if (e === void 0 && (e = {}), !t)
     throw new Error("coordinates is required");
-  if (!Array.isArray(e))
+  if (!Array.isArray(t))
     throw new Error("coordinates must be an Array");
-  if (e.length < 2)
+  if (t.length < 2)
     throw new Error("coordinates must be at least 2 numbers long");
-  if (!H(e[0]) || !H(e[1]))
+  if (!H(t[0]) || !H(t[1]))
     throw new Error("coordinates must contain numbers");
-  var n = {
+  var s = {
     type: "Point",
-    coordinates: e
+    coordinates: t
   };
-  return C(n, s, t);
+  return z(s, i, e);
 }
-function S(e, s, t) {
-  if (t === void 0 && (t = {}), e.length < 2)
+function O(t, i, e) {
+  if (e === void 0 && (e = {}), t.length < 2)
     throw new Error("coordinates must be an array of two or more positions");
-  var n = {
+  var s = {
     type: "LineString",
-    coordinates: e
+    coordinates: t
   };
-  return C(n, s, t);
+  return z(s, i, e);
 }
-function K(e, s) {
-  s === void 0 && (s = "kilometers");
-  var t = Z[s];
-  if (!t)
-    throw new Error(s + " units is invalid");
-  return e * t;
+function Q(t, i) {
+  i === void 0 && (i = "kilometers");
+  var e = Z[i];
+  if (!e)
+    throw new Error(i + " units is invalid");
+  return t * e;
 }
-function Q(e, s) {
-  s === void 0 && (s = "kilometers");
-  var t = Z[s];
-  if (!t)
-    throw new Error(s + " units is invalid");
-  return e / t;
+function X(t, i) {
+  i === void 0 && (i = "kilometers");
+  var e = Z[i];
+  if (!e)
+    throw new Error(i + " units is invalid");
+  return t / e;
 }
-function F(e) {
-  var s = e % (2 * Math.PI);
-  return s * 180 / Math.PI;
+function G(t) {
+  var i = t % (2 * Math.PI);
+  return i * 180 / Math.PI;
 }
-function M(e) {
-  var s = e % 360;
-  return s * Math.PI / 180;
+function M(t) {
+  var i = t % 360;
+  return i * Math.PI / 180;
 }
-function H(e) {
-  return !isNaN(e) && e !== null && !Array.isArray(e);
+function H(t) {
+  return !isNaN(t) && t !== null && !Array.isArray(t);
 }
-function X(e) {
-  return !!e && e.constructor === Object;
+function Y(t) {
+  return !!t && t.constructor === Object;
 }
-function J(e, s, t) {
-  if (e !== null)
-    for (var n, r, o, f, u, l, p, v = 0, g = 0, k, a = e.type, i = a === "FeatureCollection", h = a === "Feature", c = i ? e.features.length : 1, d = 0; d < c; d++) {
-      p = i ? e.features[d].geometry : h ? e.geometry : e, k = p ? p.type === "GeometryCollection" : !1, u = k ? p.geometries.length : 1;
+function J(t, i, e) {
+  if (t !== null)
+    for (var s, n, h, c, u, l, f, v = 0, g = 0, w, o = t.type, r = o === "FeatureCollection", a = o === "Feature", d = r ? t.features.length : 1, p = 0; p < d; p++) {
+      f = r ? t.features[p].geometry : a ? t.geometry : t, w = f ? f.type === "GeometryCollection" : !1, u = w ? f.geometries.length : 1;
       for (var y = 0; y < u; y++) {
-        var m = 0, w = 0;
-        if (f = k ? p.geometries[y] : p, f !== null) {
-          l = f.coordinates;
-          var P = f.type;
-          switch (v = 0, P) {
+        var m = 0, P = 0;
+        if (c = w ? f.geometries[y] : f, c !== null) {
+          l = c.coordinates;
+          var _ = c.type;
+          switch (v = 0, _) {
             case null:
               break;
             case "Point":
-              if (s(
+              if (i(
                 l,
                 g,
-                d,
+                p,
                 m,
-                w
+                P
               ) === !1)
                 return !1;
               g++, m++;
               break;
             case "LineString":
             case "MultiPoint":
-              for (n = 0; n < l.length; n++) {
-                if (s(
-                  l[n],
+              for (s = 0; s < l.length; s++) {
+                if (i(
+                  l[s],
                   g,
-                  d,
+                  p,
                   m,
-                  w
+                  P
                 ) === !1)
                   return !1;
-                g++, P === "MultiPoint" && m++;
+                g++, _ === "MultiPoint" && m++;
               }
-              P === "LineString" && m++;
+              _ === "LineString" && m++;
               break;
             case "Polygon":
             case "MultiLineString":
-              for (n = 0; n < l.length; n++) {
-                for (r = 0; r < l[n].length - v; r++) {
-                  if (s(
-                    l[n][r],
+              for (s = 0; s < l.length; s++) {
+                for (n = 0; n < l[s].length - v; n++) {
+                  if (i(
+                    l[s][n],
                     g,
-                    d,
+                    p,
                     m,
-                    w
+                    P
                   ) === !1)
                     return !1;
                   g++;
                 }
-                P === "MultiLineString" && m++, P === "Polygon" && w++;
+                _ === "MultiLineString" && m++, _ === "Polygon" && P++;
               }
-              P === "Polygon" && m++;
+              _ === "Polygon" && m++;
               break;
             case "MultiPolygon":
-              for (n = 0; n < l.length; n++) {
-                for (w = 0, r = 0; r < l[n].length; r++) {
-                  for (o = 0; o < l[n][r].length - v; o++) {
-                    if (s(
-                      l[n][r][o],
+              for (s = 0; s < l.length; s++) {
+                for (P = 0, n = 0; n < l[s].length; n++) {
+                  for (h = 0; h < l[s][n].length - v; h++) {
+                    if (i(
+                      l[s][n][h],
                       g,
-                      d,
+                      p,
                       m,
-                      w
+                      P
                     ) === !1)
                       return !1;
                     g++;
                   }
-                  w++;
+                  P++;
                 }
                 m++;
               }
               break;
             case "GeometryCollection":
-              for (n = 0; n < f.geometries.length; n++)
-                if (J(f.geometries[n], s) === !1)
+              for (s = 0; s < c.geometries.length; s++)
+                if (J(c.geometries[s], i) === !1)
                   return !1;
               break;
             default:
@@ -176,32 +176,32 @@ function J(e, s, t) {
       }
     }
 }
-function Y(e, s) {
-  var t, n, r, o, f, u, l, p, v, g, k = 0, a = e.type === "FeatureCollection", i = e.type === "Feature", h = a ? e.features.length : 1;
-  for (t = 0; t < h; t++) {
-    for (u = a ? e.features[t].geometry : i ? e.geometry : e, p = a ? e.features[t].properties : i ? e.properties : {}, v = a ? e.features[t].bbox : i ? e.bbox : void 0, g = a ? e.features[t].id : i ? e.id : void 0, l = u ? u.type === "GeometryCollection" : !1, f = l ? u.geometries.length : 1, r = 0; r < f; r++) {
-      if (o = l ? u.geometries[r] : u, o === null) {
-        if (s(
+function j(t, i) {
+  var e, s, n, h, c, u, l, f, v, g, w = 0, o = t.type === "FeatureCollection", r = t.type === "Feature", a = o ? t.features.length : 1;
+  for (e = 0; e < a; e++) {
+    for (u = o ? t.features[e].geometry : r ? t.geometry : t, f = o ? t.features[e].properties : r ? t.properties : {}, v = o ? t.features[e].bbox : r ? t.bbox : void 0, g = o ? t.features[e].id : r ? t.id : void 0, l = u ? u.type === "GeometryCollection" : !1, c = l ? u.geometries.length : 1, n = 0; n < c; n++) {
+      if (h = l ? u.geometries[n] : u, h === null) {
+        if (i(
           null,
-          k,
-          p,
+          w,
+          f,
           v,
           g
         ) === !1)
           return !1;
         continue;
       }
-      switch (o.type) {
+      switch (h.type) {
         case "Point":
         case "LineString":
         case "MultiPoint":
         case "Polygon":
         case "MultiLineString":
         case "MultiPolygon": {
-          if (s(
-            o,
-            k,
-            p,
+          if (i(
+            h,
+            w,
+            f,
             v,
             g
           ) === !1)
@@ -209,11 +209,11 @@ function Y(e, s) {
           break;
         }
         case "GeometryCollection": {
-          for (n = 0; n < o.geometries.length; n++)
-            if (s(
-              o.geometries[n],
-              k,
-              p,
+          for (s = 0; s < h.geometries.length; s++)
+            if (i(
+              h.geometries[s],
+              w,
+              f,
               v,
               g
             ) === !1)
@@ -224,20 +224,20 @@ function Y(e, s) {
           throw new Error("Unknown Geometry Type");
       }
     }
-    k++;
+    w++;
   }
 }
-function j(e, s) {
-  Y(e, function(t, n, r, o, f) {
-    var u = t === null ? null : t.type;
+function $(t, i) {
+  j(t, function(e, s, n, h, c) {
+    var u = e === null ? null : e.type;
     switch (u) {
       case null:
       case "Point":
       case "LineString":
       case "Polygon":
-        return s(
-          C(t, r, { bbox: o, id: f }),
-          n,
+        return i(
+          z(e, n, { bbox: h, id: c }),
+          s,
           0
         ) === !1 ? !1 : void 0;
     }
@@ -253,43 +253,43 @@ function j(e, s) {
         l = "Polygon";
         break;
     }
-    for (var p = 0; p < t.coordinates.length; p++) {
-      var v = t.coordinates[p], g = {
+    for (var f = 0; f < e.coordinates.length; f++) {
+      var v = e.coordinates[f], g = {
         type: l,
         coordinates: v
       };
-      if (s(C(g, r), n, p) === !1)
+      if (i(z(g, n), s, f) === !1)
         return !1;
     }
   });
 }
-function $(e, s) {
-  j(e, function(t, n, r) {
-    var o = 0;
-    if (t.geometry) {
-      var f = t.geometry.type;
-      if (!(f === "Point" || f === "MultiPoint")) {
-        var u, l = 0, p = 0, v = 0;
+function tt(t, i) {
+  $(t, function(e, s, n) {
+    var h = 0;
+    if (e.geometry) {
+      var c = e.geometry.type;
+      if (!(c === "Point" || c === "MultiPoint")) {
+        var u, l = 0, f = 0, v = 0;
         if (J(
-          t,
-          function(g, k, a, i, h) {
-            if (u === void 0 || n > l || i > p || h > v) {
-              u = g, l = n, p = i, v = h, o = 0;
+          e,
+          function(g, w, o, r, a) {
+            if (u === void 0 || s > l || r > f || a > v) {
+              u = g, l = s, f = r, v = a, h = 0;
               return;
             }
-            var c = S(
+            var d = O(
               [u, g],
-              t.properties
+              e.properties
             );
-            if (s(
-              c,
+            if (i(
+              d,
+              s,
               n,
-              r,
-              h,
-              o
+              a,
+              h
             ) === !1)
               return !1;
-            o++, u = g;
+            h++, u = g;
           }
         ) === !1)
           return !1;
@@ -297,217 +297,217 @@ function $(e, s) {
     }
   });
 }
-function tt(e, s, t) {
-  var n = t, r = !1;
-  return $(
-    e,
-    function(o, f, u, l, p) {
-      r === !1 && t === void 0 ? n = o : n = s(
-        n,
-        o,
-        f,
+function et(t, i, e) {
+  var s = e, n = !1;
+  return tt(
+    t,
+    function(h, c, u, l, f) {
+      n === !1 && e === void 0 ? s = h : s = i(
+        s,
+        h,
+        c,
         u,
         l,
-        p
-      ), r = !0;
+        f
+      ), n = !0;
     }
-  ), n;
+  ), s;
 }
-function E(e) {
-  if (!e)
+function x(t) {
+  if (!t)
     throw new Error("coord is required");
-  if (!Array.isArray(e)) {
-    if (e.type === "Feature" && e.geometry !== null && e.geometry.type === "Point")
-      return e.geometry.coordinates;
-    if (e.type === "Point")
-      return e.coordinates;
+  if (!Array.isArray(t)) {
+    if (t.type === "Feature" && t.geometry !== null && t.geometry.type === "Point")
+      return t.geometry.coordinates;
+    if (t.type === "Point")
+      return t.coordinates;
   }
-  if (Array.isArray(e) && e.length >= 2 && !Array.isArray(e[0]) && !Array.isArray(e[1]))
-    return e;
+  if (Array.isArray(t) && t.length >= 2 && !Array.isArray(t[0]) && !Array.isArray(t[1]))
+    return t;
   throw new Error("coord must be GeoJSON Point or an Array of numbers");
 }
-function et(e) {
-  return e.type === "Feature" ? e.geometry : e;
+function it(t) {
+  return t.type === "Feature" ? t.geometry : t;
 }
-var it = typeof globalThis != "undefined" ? globalThis : typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : {};
-function U(e, s, t) {
-  t === void 0 && (t = {});
-  var n = E(e), r = E(s), o = M(r[1] - n[1]), f = M(r[0] - n[0]), u = M(n[1]), l = M(r[1]), p = Math.pow(Math.sin(o / 2), 2) + Math.pow(Math.sin(f / 2), 2) * Math.cos(u) * Math.cos(l);
-  return K(2 * Math.atan2(Math.sqrt(p), Math.sqrt(1 - p)), t.units);
+var st = typeof globalThis != "undefined" ? globalThis : typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : {};
+function U(t, i, e) {
+  e === void 0 && (e = {});
+  var s = x(t), n = x(i), h = M(n[1] - s[1]), c = M(n[0] - s[0]), u = M(s[1]), l = M(n[1]), f = Math.pow(Math.sin(h / 2), 2) + Math.pow(Math.sin(c / 2), 2) * Math.cos(u) * Math.cos(l);
+  return Q(2 * Math.atan2(Math.sqrt(f), Math.sqrt(1 - f)), e.units);
 }
-function B(e, s, t, n) {
-  n === void 0 && (n = {});
-  var r = E(e), o = M(r[0]), f = M(r[1]), u = M(t), l = Q(s, n.units), p = Math.asin(Math.sin(f) * Math.cos(l) + Math.cos(f) * Math.sin(l) * Math.cos(u)), v = o + Math.atan2(Math.sin(u) * Math.sin(l) * Math.cos(f), Math.cos(l) - Math.sin(f) * Math.sin(p)), g = F(v), k = F(p);
-  return O([g, k], n.properties);
+function I(t, i, e, s) {
+  s === void 0 && (s = {});
+  var n = x(t), h = M(n[0]), c = M(n[1]), u = M(e), l = X(i, s.units), f = Math.asin(Math.sin(c) * Math.cos(l) + Math.cos(c) * Math.sin(l) * Math.cos(u)), v = h + Math.atan2(Math.sin(u) * Math.sin(l) * Math.cos(c), Math.cos(l) - Math.sin(c) * Math.sin(f)), g = G(v), w = G(f);
+  return A([g, w], s.properties);
 }
-function T(e, s, t) {
-  if (t === void 0 && (t = {}), t.final === !0)
-    return st(e, s);
-  var n = E(e), r = E(s), o = M(n[0]), f = M(r[0]), u = M(n[1]), l = M(r[1]), p = Math.sin(f - o) * Math.cos(l), v = Math.cos(u) * Math.sin(l) - Math.sin(u) * Math.cos(l) * Math.cos(f - o);
-  return F(Math.atan2(p, v));
+function D(t, i, e) {
+  if (e === void 0 && (e = {}), e.final === !0)
+    return rt(t, i);
+  var s = x(t), n = x(i), h = M(s[0]), c = M(n[0]), u = M(s[1]), l = M(n[1]), f = Math.sin(c - h) * Math.cos(l), v = Math.cos(u) * Math.sin(l) - Math.sin(u) * Math.cos(l) * Math.cos(c - h);
+  return G(Math.atan2(f, v));
 }
-function st(e, s) {
-  var t = T(s, e);
-  return t = (t + 180) % 360, t;
+function rt(t, i) {
+  var e = D(i, t);
+  return e = (e + 180) % 360, e;
 }
-function rt(e, s, t) {
-  t === void 0 && (t = {});
-  for (var n = et(e), r = n.coordinates, o = 0, f = 0; f < r.length && !(s >= o && f === r.length - 1); f++)
-    if (o >= s) {
-      var u = s - o;
+function q(t, i, e) {
+  e === void 0 && (e = {});
+  for (var s = it(t), n = s.coordinates, h = 0, c = 0; c < n.length && !(i >= h && c === n.length - 1); c++)
+    if (h >= i) {
+      var u = i - h;
       if (u) {
-        var l = T(r[f], r[f - 1]) - 180, p = B(r[f], u, l, t);
-        return p;
+        var l = D(n[c], n[c - 1]) - 180, f = I(n[c], u, l, e);
+        return f;
       } else
-        return O(r[f]);
+        return A(n[c]);
     } else
-      o += U(r[f], r[f + 1], t);
-  return O(r[r.length - 1]);
+      h += U(n[c], n[c + 1], e);
+  return A(n[n.length - 1]);
 }
-function q(e, s) {
-  return s === void 0 && (s = {}), tt(e, function(t, n) {
-    var r = n.geometry.coordinates;
-    return t + U(r[0], r[1], s);
+function N(t, i) {
+  return i === void 0 && (i = {}), et(t, function(e, s) {
+    var n = s.geometry.coordinates;
+    return e + U(n[0], n[1], i);
   }, 0);
 }
-function V(e, s, t, n) {
-  if (n = n || {}, !X(n)) throw new Error("options is invalid");
-  var r, o = [];
-  if (e.type === "Feature") r = e.geometry.coordinates;
-  else if (e.type === "LineString") r = e.coordinates;
+function V(t, i, e, s) {
+  if (s = s || {}, !Y(s)) throw new Error("options is invalid");
+  var n, h = [];
+  if (t.type === "Feature") n = t.geometry.coordinates;
+  else if (t.type === "LineString") n = t.coordinates;
   else throw new Error("input must be a LineString Feature or Geometry");
-  for (var f = r.length, u = 0, l, p, v, g = 0; g < r.length && !(s >= u && g === r.length - 1); g++) {
-    if (u > s && o.length === 0) {
-      if (l = s - u, !l)
-        return o.push(r[g]), S(o);
-      p = T(r[g], r[g - 1]) - 180, v = B(r[g], l, p, n), o.push(v.geometry.coordinates);
+  for (var c = n.length, u = 0, l, f, v, g = 0; g < n.length && !(i >= u && g === n.length - 1); g++) {
+    if (u > i && h.length === 0) {
+      if (l = i - u, !l)
+        return h.push(n[g]), O(h);
+      f = D(n[g], n[g - 1]) - 180, v = I(n[g], l, f, s), h.push(v.geometry.coordinates);
     }
-    if (u >= t)
-      return l = t - u, l ? (p = T(r[g], r[g - 1]) - 180, v = B(r[g], l, p, n), o.push(v.geometry.coordinates), S(o)) : (o.push(r[g]), S(o));
-    if (u >= s && o.push(r[g]), g === r.length - 1)
-      return S(o);
-    u += U(r[g], r[g + 1], n);
+    if (u >= e)
+      return l = e - u, l ? (f = D(n[g], n[g - 1]) - 180, v = I(n[g], l, f, s), h.push(v.geometry.coordinates), O(h)) : (h.push(n[g]), O(h));
+    if (u >= i && h.push(n[g]), g === n.length - 1)
+      return O(h);
+    u += U(n[g], n[g + 1], s);
   }
-  if (u < s && r.length === f)
+  if (u < i && n.length === c)
     throw new Error("Start position is beyond line");
-  var k = r[r.length - 1];
-  return S([k, k]);
+  var w = n[n.length - 1];
+  return O([w, w]);
 }
-(function(e, s) {
-  (function(t, n) {
-    n(_);
-  })(it, function(t) {
-    t = t && t.hasOwnProperty("default") ? t.default : t;
-    function n(a, i) {
-      var h = i.x - a.x, c = i.y - a.y;
-      return Math.sqrt(h * h + c * c);
+(function(t, i) {
+  (function(e, s) {
+    s(b);
+  })(st, function(e) {
+    e = e && e.hasOwnProperty("default") ? e.default : e;
+    function s(o, r) {
+      var a = r.x - o.x, d = r.y - o.y;
+      return Math.sqrt(a * a + d * d);
     }
-    var r = function(i, h) {
-      return (Math.atan2(h.y - i.y, h.x - i.x) * 180 / Math.PI + 90 + 360) % 360;
-    }, o = function(i, h) {
-      var c = i.value, d = i.isInPixels;
-      return d ? c / h : c;
+    var n = function(r, a) {
+      return (Math.atan2(a.y - r.y, a.x - r.x) * 180 / Math.PI + 90 + 360) % 360;
+    }, h = function(r, a) {
+      var d = r.value, p = r.isInPixels;
+      return p ? d / a : d;
     };
-    function f(a) {
-      if (typeof a == "string" && a.indexOf("%") !== -1)
+    function c(o) {
+      if (typeof o == "string" && o.indexOf("%") !== -1)
         return {
-          value: parseFloat(a) / 100,
+          value: parseFloat(o) / 100,
           isInPixels: !1
         };
-      var i = a ? parseFloat(a) : 0;
+      var r = o ? parseFloat(o) : 0;
       return {
-        value: i,
-        isInPixels: i > 0
+        value: r,
+        isInPixels: r > 0
       };
     }
-    var u = function(i, h) {
-      return i.x === h.x && i.y === h.y;
+    var u = function(r, a) {
+      return r.x === a.x && r.y === a.y;
     };
-    function l(a) {
-      return a.reduce(function(i, h, c, d) {
-        if (c > 0 && !u(h, d[c - 1])) {
-          var y = d[c - 1], m = i.length > 0 ? i[i.length - 1].distB : 0, w = n(y, h);
-          i.push({
+    function l(o) {
+      return o.reduce(function(r, a, d, p) {
+        if (d > 0 && !u(a, p[d - 1])) {
+          var y = p[d - 1], m = r.length > 0 ? r[r.length - 1].distB : 0, P = s(y, a);
+          r.push({
             a: y,
-            b: h,
+            b: a,
             distA: m,
-            distB: m + w,
-            heading: r(y, h)
+            distB: m + P,
+            heading: n(y, a)
           });
         }
-        return i;
+        return r;
       }, []);
     }
-    function p(a, i) {
-      var h = l(a), c = h.length;
-      if (c === 0)
+    function f(o, r) {
+      var a = l(o), d = a.length;
+      if (d === 0)
         return [];
-      var d = h[c - 1].distB, y = o(i.offset, d), m = o(i.endOffset, d), w = o(i.repeat, d), P = d * w, R = y > 0 ? d * y : 0, D = m > 0 ? d * m : 0, x = [], G = R;
+      var p = a[d - 1].distB, y = h(r.offset, p), m = h(r.endOffset, p), P = h(r.repeat, p), _ = p * P, T = y > 0 ? p * y : 0, R = m > 0 ? p * m : 0, C = [], E = T;
       do
-        x.push(G), G += P;
-      while (P > 0 && G < d - D);
-      var z = 0, A = h[0];
-      return x.map(function(I) {
-        for (; I > A.distB && z < c - 1; )
-          z++, A = h[z];
-        var W = (I - A.distA) / (A.distB - A.distA);
+        C.push(E), E += _;
+      while (_ > 0 && E < p - R);
+      var F = 0, S = a[0];
+      return C.map(function(B) {
+        for (; B > S.distB && F < d - 1; )
+          F++, S = a[F];
+        var K = (B - S.distA) / (S.distB - S.distA);
         return {
-          pt: v(A.a, A.b, W),
-          heading: A.heading
+          pt: v(S.a, S.b, K),
+          heading: S.heading
         };
       });
     }
-    function v(a, i, h) {
-      return i.x !== a.x ? {
-        x: a.x + h * (i.x - a.x),
-        y: a.y + h * (i.y - a.y)
+    function v(o, r, a) {
+      return r.x !== o.x ? {
+        x: o.x + a * (r.x - o.x),
+        y: o.y + a * (r.y - o.y)
       } : {
-        x: a.x,
-        y: a.y + (i.y - a.y) * h
+        x: o.x,
+        y: o.y + (r.y - o.y) * a
       };
     }
     (function() {
-      var a = L.Marker.prototype._initIcon, i = L.Marker.prototype._setPos, h = L.DomUtil.TRANSFORM === "msTransform";
+      var o = L.Marker.prototype._initIcon, r = L.Marker.prototype._setPos, a = L.DomUtil.TRANSFORM === "msTransform";
       L.Marker.addInitHook(function() {
-        var c = this.options.icon && this.options.icon.options, d = c && this.options.icon.options.iconAnchor;
-        d && (d = d[0] + "px " + d[1] + "px"), this.options.rotationOrigin = this.options.rotationOrigin || d || "center bottom", this.options.rotationAngle = this.options.rotationAngle || 0, this.on("drag", function(y) {
+        var d = this.options.icon && this.options.icon.options, p = d && this.options.icon.options.iconAnchor;
+        p && (p = p[0] + "px " + p[1] + "px"), this.options.rotationOrigin = this.options.rotationOrigin || p || "center bottom", this.options.rotationAngle = this.options.rotationAngle || 0, this.on("drag", function(y) {
           y.target._applyRotation();
         });
       }), L.Marker.include({
         _initIcon: function() {
-          a.call(this);
+          o.call(this);
         },
-        _setPos: function(c) {
-          i.call(this, c), this._applyRotation();
+        _setPos: function(d) {
+          r.call(this, d), this._applyRotation();
         },
         _applyRotation: function() {
-          this.options.rotationAngle && (this._icon.style[L.DomUtil.TRANSFORM + "Origin"] = this.options.rotationOrigin, h ? this._icon.style[L.DomUtil.TRANSFORM] = "rotate(" + this.options.rotationAngle + "deg)" : this._icon.style[L.DomUtil.TRANSFORM] += " rotateZ(" + this.options.rotationAngle + "deg)");
+          this.options.rotationAngle && (this._icon.style[L.DomUtil.TRANSFORM + "Origin"] = this.options.rotationOrigin, a ? this._icon.style[L.DomUtil.TRANSFORM] = "rotate(" + this.options.rotationAngle + "deg)" : this._icon.style[L.DomUtil.TRANSFORM] += " rotateZ(" + this.options.rotationAngle + "deg)");
         },
-        setRotationAngle: function(c) {
-          return this.options.rotationAngle = c, this.update(), this;
+        setRotationAngle: function(d) {
+          return this.options.rotationAngle = d, this.update(), this;
         },
-        setRotationOrigin: function(c) {
-          return this.options.rotationOrigin = c, this.update(), this;
+        setRotationOrigin: function(d) {
+          return this.options.rotationOrigin = d, this.update(), this;
         }
       });
-    })(), t.Symbol = t.Symbol || {}, t.Symbol.Dash = t.Class.extend({
+    })(), e.Symbol = e.Symbol || {}, e.Symbol.Dash = e.Class.extend({
       options: {
         pixelSize: 10,
         pathOptions: {}
       },
-      initialize: function(i) {
-        t.Util.setOptions(this, i), this.options.pathOptions.clickable = !1;
+      initialize: function(r) {
+        e.Util.setOptions(this, r), this.options.pathOptions.clickable = !1;
       },
-      buildSymbol: function(i, h, c, d, y) {
-        var m = this.options, w = Math.PI / 180;
+      buildSymbol: function(r, a, d, p, y) {
+        var m = this.options, P = Math.PI / 180;
         if (m.pixelSize <= 1)
-          return t.polyline([i.latLng, i.latLng], m.pathOptions);
-        var P = c.project(i.latLng), R = -(i.heading - 90) * w, D = t.point(P.x + m.pixelSize * Math.cos(R + Math.PI) / 2, P.y + m.pixelSize * Math.sin(R) / 2), x = P.add(P.subtract(D));
-        return t.polyline([c.unproject(D), c.unproject(x)], m.pathOptions);
+          return e.polyline([r.latLng, r.latLng], m.pathOptions);
+        var _ = d.project(r.latLng), T = -(r.heading - 90) * P, R = e.point(_.x + m.pixelSize * Math.cos(T + Math.PI) / 2, _.y + m.pixelSize * Math.sin(T) / 2), C = _.add(_.subtract(R));
+        return e.polyline([d.unproject(R), d.unproject(C)], m.pathOptions);
       }
-    }), t.Symbol.dash = function(a) {
-      return new t.Symbol.Dash(a);
-    }, t.Symbol.ArrowHead = t.Class.extend({
+    }), e.Symbol.dash = function(o) {
+      return new e.Symbol.Dash(o);
+    }, e.Symbol.ArrowHead = e.Class.extend({
       options: {
         polygon: !0,
         pixelSize: 10,
@@ -517,105 +517,105 @@ function V(e, s, t, n) {
           weight: 2
         }
       },
-      initialize: function(i) {
-        t.Util.setOptions(this, i), this.options.pathOptions.clickable = !1;
+      initialize: function(r) {
+        e.Util.setOptions(this, r), this.options.pathOptions.clickable = !1;
       },
-      buildSymbol: function(i, h, c, d, y) {
-        return this.options.polygon ? t.polygon(this._buildArrowPath(i, c), this.options.pathOptions) : t.polyline(this._buildArrowPath(i, c), this.options.pathOptions);
+      buildSymbol: function(r, a, d, p, y) {
+        return this.options.polygon ? e.polygon(this._buildArrowPath(r, d), this.options.pathOptions) : e.polyline(this._buildArrowPath(r, d), this.options.pathOptions);
       },
-      _buildArrowPath: function(i, h) {
-        var c = Math.PI / 180, d = h.project(i.latLng), y = -(i.heading - 90) * c, m = this.options.headAngle / 2 * c, w = y + m, P = y - m, R = t.point(d.x - this.options.pixelSize * Math.cos(w), d.y + this.options.pixelSize * Math.sin(w)), D = t.point(d.x - this.options.pixelSize * Math.cos(P), d.y + this.options.pixelSize * Math.sin(P));
-        return [h.unproject(R), i.latLng, h.unproject(D)];
+      _buildArrowPath: function(r, a) {
+        var d = Math.PI / 180, p = a.project(r.latLng), y = -(r.heading - 90) * d, m = this.options.headAngle / 2 * d, P = y + m, _ = y - m, T = e.point(p.x - this.options.pixelSize * Math.cos(P), p.y + this.options.pixelSize * Math.sin(P)), R = e.point(p.x - this.options.pixelSize * Math.cos(_), p.y + this.options.pixelSize * Math.sin(_));
+        return [a.unproject(T), r.latLng, a.unproject(R)];
       }
-    }), t.Symbol.arrowHead = function(a) {
-      return new t.Symbol.ArrowHead(a);
-    }, t.Symbol.Marker = t.Class.extend({
+    }), e.Symbol.arrowHead = function(o) {
+      return new e.Symbol.ArrowHead(o);
+    }, e.Symbol.Marker = e.Class.extend({
       options: {
         markerOptions: {},
         rotate: !1
       },
-      initialize: function(i) {
-        t.Util.setOptions(this, i), this.options.markerOptions.clickable = !1, this.options.markerOptions.draggable = !1;
+      initialize: function(r) {
+        e.Util.setOptions(this, r), this.options.markerOptions.clickable = !1, this.options.markerOptions.draggable = !1;
       },
-      buildSymbol: function(i, h, c, d, y) {
-        return this.options.rotate && (this.options.markerOptions.rotationAngle = i.heading + (this.options.angleCorrection || 0)), t.marker(i.latLng, this.options.markerOptions);
+      buildSymbol: function(r, a, d, p, y) {
+        return this.options.rotate && (this.options.markerOptions.rotationAngle = r.heading + (this.options.angleCorrection || 0)), e.marker(r.latLng, this.options.markerOptions);
       }
-    }), t.Symbol.marker = function(a) {
-      return new t.Symbol.Marker(a);
+    }), e.Symbol.marker = function(o) {
+      return new e.Symbol.Marker(o);
     };
-    var g = function(i) {
-      return i instanceof t.LatLng || Array.isArray(i) && i.length === 2 && typeof i[0] == "number";
-    }, k = function(i) {
-      return Array.isArray(i) && g(i[0]);
+    var g = function(r) {
+      return r instanceof e.LatLng || Array.isArray(r) && r.length === 2 && typeof r[0] == "number";
+    }, w = function(r) {
+      return Array.isArray(r) && g(r[0]);
     };
-    t.PolylineDecorator = t.FeatureGroup.extend({
+    e.PolylineDecorator = e.FeatureGroup.extend({
       options: {
         patterns: []
       },
-      initialize: function(i, h) {
-        t.FeatureGroup.prototype.initialize.call(this), t.Util.setOptions(this, h), this._map = null, this._paths = this._initPaths(i), this._bounds = this._initBounds(), this._patterns = this._initPatterns(this.options.patterns);
+      initialize: function(r, a) {
+        e.FeatureGroup.prototype.initialize.call(this), e.Util.setOptions(this, a), this._map = null, this._paths = this._initPaths(r), this._bounds = this._initBounds(), this._patterns = this._initPatterns(this.options.patterns);
       },
       /**
       * Deals with all the different cases. input can be one of these types:
       * array of LatLng, array of 2-number arrays, Polyline, Polygon,
       * array of one of the previous.
       */
-      _initPaths: function(i, h) {
-        var c = this;
-        if (k(i)) {
-          var d = h ? i.concat([i[0]]) : i;
-          return [d];
+      _initPaths: function(r, a) {
+        var d = this;
+        if (w(r)) {
+          var p = a ? r.concat([r[0]]) : r;
+          return [p];
         }
-        return i instanceof t.Polyline ? this._initPaths(i.getLatLngs(), i instanceof t.Polygon) : Array.isArray(i) ? i.reduce(function(y, m) {
-          return y.concat(c._initPaths(m, h));
+        return r instanceof e.Polyline ? this._initPaths(r.getLatLngs(), r instanceof e.Polygon) : Array.isArray(r) ? r.reduce(function(y, m) {
+          return y.concat(d._initPaths(m, a));
         }, []) : [];
       },
       // parse pattern definitions and precompute some values
-      _initPatterns: function(i) {
-        return i.map(this._parsePatternDef);
+      _initPatterns: function(r) {
+        return r.map(this._parsePatternDef);
       },
       /**
       * Changes the patterns used by this decorator
       * and redraws the new one.
       */
-      setPatterns: function(i) {
-        this.options.patterns = i, this._patterns = this._initPatterns(this.options.patterns), this.redraw();
+      setPatterns: function(r) {
+        this.options.patterns = r, this._patterns = this._initPatterns(this.options.patterns), this.redraw();
       },
       /**
       * Changes the patterns used by this decorator
       * and redraws the new one.
       */
-      setPaths: function(i) {
-        this._paths = this._initPaths(i), this._bounds = this._initBounds(), this.redraw();
+      setPaths: function(r) {
+        this._paths = this._initPaths(r), this._bounds = this._initBounds(), this.redraw();
       },
       /**
       * Parse the pattern definition
       */
-      _parsePatternDef: function(i, h) {
+      _parsePatternDef: function(r, a) {
         return {
-          symbolFactory: i.symbol,
+          symbolFactory: r.symbol,
           // Parse offset and repeat values, managing the two cases:
           // absolute (in pixels) or relative (in percentage of the polyline length)
-          offset: f(i.offset),
-          endOffset: f(i.endOffset),
-          repeat: f(i.repeat)
+          offset: c(r.offset),
+          endOffset: c(r.endOffset),
+          repeat: c(r.repeat)
         };
       },
-      onAdd: function(i) {
-        this._map = i, this._draw(), this._map.on("moveend", this.redraw, this);
+      onAdd: function(r) {
+        this._map = r, this._draw(), this._map.on("moveend", this.redraw, this);
       },
-      onRemove: function(i) {
-        this._map.off("moveend", this.redraw, this), this._map = null, t.FeatureGroup.prototype.onRemove.call(this, i);
+      onRemove: function(r) {
+        this._map.off("moveend", this.redraw, this), this._map = null, e.FeatureGroup.prototype.onRemove.call(this, r);
       },
       /**
       * As real pattern bounds depends on map zoom and bounds,
       * we just compute the total bounds of all paths decorated by this instance.
       */
       _initBounds: function() {
-        var i = this._paths.reduce(function(h, c) {
-          return h.concat(c);
+        var r = this._paths.reduce(function(a, d) {
+          return a.concat(d);
         }, []);
-        return t.latLngBounds(i);
+        return e.latLngBounds(r);
       },
       getBounds: function() {
         return this._bounds;
@@ -623,26 +623,26 @@ function V(e, s, t, n) {
       /**
       * Returns an array of ILayers object
       */
-      _buildSymbols: function(i, h, c) {
-        var d = this;
-        return c.map(function(y, m) {
-          return h.buildSymbol(y, i, d._map, m, c.length);
+      _buildSymbols: function(r, a, d) {
+        var p = this;
+        return d.map(function(y, m) {
+          return a.buildSymbol(y, r, p._map, m, d.length);
         });
       },
       /**
       * Compute pairs of LatLng and heading angle,
       * that define positions and directions of the symbols on the path
       */
-      _getDirectionPoints: function(i, h) {
-        var c = this;
-        if (i.length < 2)
+      _getDirectionPoints: function(r, a) {
+        var d = this;
+        if (r.length < 2)
           return [];
-        var d = i.map(function(y) {
-          return c._map.project(y);
+        var p = r.map(function(y) {
+          return d._map.project(y);
         });
-        return p(d, h).map(function(y) {
+        return f(p, a).map(function(y) {
           return {
-            latLng: c._map.unproject(t.point(y.pt)),
+            latLng: d._map.unproject(e.point(y.pt)),
             heading: y.heading
           };
         });
@@ -653,268 +653,452 @@ function V(e, s, t, n) {
       /**
       * Returns all symbols for a given pattern as an array of FeatureGroup
       */
-      _getPatternLayers: function(i) {
-        var h = this, c = this._map.getBounds().pad(0.1);
-        return this._paths.map(function(d) {
-          var y = h._getDirectionPoints(d, i).filter(function(m) {
-            return c.contains(m.latLng);
+      _getPatternLayers: function(r) {
+        var a = this, d = this._map.getBounds().pad(0.1);
+        return this._paths.map(function(p) {
+          var y = a._getDirectionPoints(p, r).filter(function(m) {
+            return d.contains(m.latLng);
           });
-          return t.featureGroup(h._buildSymbols(d, i.symbolFactory, y));
+          return e.featureGroup(a._buildSymbols(p, r.symbolFactory, y));
         });
       },
       /**
       * Draw all patterns
       */
       _draw: function() {
-        var i = this;
-        this._patterns.map(function(h) {
-          return i._getPatternLayers(h);
-        }).forEach(function(h) {
-          i.addLayer(t.featureGroup(h));
+        var r = this;
+        this._patterns.map(function(a) {
+          return r._getPatternLayers(a);
+        }).forEach(function(a) {
+          r.addLayer(e.featureGroup(a));
         });
       }
-    }), t.polylineDecorator = function(a, i) {
-      return new t.PolylineDecorator(a, i);
+    }), e.polylineDecorator = function(o, r) {
+      return new e.PolylineDecorator(o, r);
     };
   });
 })();
 (function() {
-  var e = L.Marker.prototype._initIcon, s = L.Marker.prototype._setPos, t = L.DomUtil.TRANSFORM === "msTransform";
+  var t = L.Marker.prototype._initIcon, i = L.Marker.prototype._setPos, e = L.DomUtil.TRANSFORM === "msTransform";
   L.Marker.addInitHook(function() {
-    var n = this.options.icon && this.options.icon.options, r = n && this.options.icon.options.iconAnchor;
-    r && (r = r[0] + "px " + r[1] + "px"), this.options.rotationOrigin = this.options.rotationOrigin || r || "center bottom", this.options.rotationAngle = this.options.rotationAngle || 0, this.on("drag", function(o) {
-      o.target._applyRotation();
+    var s = this.options.icon && this.options.icon.options, n = s && this.options.icon.options.iconAnchor;
+    n && (n = n[0] + "px " + n[1] + "px"), this.options.rotationOrigin = this.options.rotationOrigin || n || "center bottom", this.options.rotationAngle = this.options.rotationAngle || 0, this.on("drag", function(h) {
+      h.target._applyRotation();
     });
   }), L.Marker.include({
     _initIcon: function() {
-      e.call(this);
+      t.call(this);
     },
-    _setPos: function(n) {
-      s.call(this, n), this._applyRotation();
+    _setPos: function(s) {
+      i.call(this, s), this._applyRotation();
     },
     _applyRotation: function() {
-      this.options.rotationAngle && (this._icon.style[L.DomUtil.TRANSFORM + "Origin"] = this.options.rotationOrigin, t ? this._icon.style[L.DomUtil.TRANSFORM] = "rotate(" + this.options.rotationAngle + "deg)" : this._icon.style[L.DomUtil.TRANSFORM] += " rotateZ(" + this.options.rotationAngle + "deg)");
+      this.options.rotationAngle && (this._icon.style[L.DomUtil.TRANSFORM + "Origin"] = this.options.rotationOrigin, e ? this._icon.style[L.DomUtil.TRANSFORM] = "rotate(" + this.options.rotationAngle + "deg)" : this._icon.style[L.DomUtil.TRANSFORM] += " rotateZ(" + this.options.rotationAngle + "deg)");
     },
-    setRotationAngle: function(n) {
-      return this.options.rotationAngle = n, this.update(), this;
+    setRotationAngle: function(s) {
+      return this.options.rotationAngle = s, this.update(), this;
     },
-    setRotationOrigin: function(n) {
-      return this.options.rotationOrigin = n, this.update(), this;
+    setRotationOrigin: function(s) {
+      return this.options.rotationOrigin = s, this.update(), this;
     }
   });
 })();
-_.TrackPlayer = class {
-  constructor(e, s = {}) {
-    var n, r, o, f, u, l, p, v, g, k;
-    let t = _.polyline(e)._latlngs;
-    this.track = S(
-      t.map(({ lng: a, lat: i }) => [a, i])
-    ), this.distanceSlice = [0], this.track.geometry.coordinates.forEach((a, i, h) => {
-      if (i !== 0) {
-        let c = S(h.slice(0, i + 1));
-        this.distanceSlice.push(q(c));
-      }
-    }), this.distance = q(this.track), this.addedToMap = !1, this.options = {
-      speed: (n = s.speed) != null ? n : 600,
-      weight: (r = s.weight) != null ? r : 8,
-      markerIcon: s.markerIcon,
-      polylineDecoratorOptions: (o = s.polylineDecoratorOptions) != null ? o : {
-        patterns: [
-          {
-            offset: 30,
-            repeat: 60,
-            symbol: _.Symbol.arrowHead({
-              pixelSize: 5,
-              headAngle: 75,
-              polygon: !1,
-              pathOptions: {
-                stroke: !0,
-                weight: 3,
-                color: "#fff"
-              }
-            })
-          }
-        ]
-      },
-      passedLineColor: (f = s.passedLineColor) != null ? f : "#0000ff",
-      notPassedLineColor: (u = s.notPassedLineColor) != null ? u : "#ff0000",
-      panTo: (l = s.panTo) != null ? l : !0,
-      markerRotationOrigin: (p = s.markerRotationOrigin) != null ? p : "center",
-      markerRotationOffset: (v = s.markerRotationOffset) != null ? v : 0,
-      markerRotation: (g = s.markerRotation) != null ? g : !0,
-      progress: (k = s.progress) != null ? k : 0
-    }, this.initProgress = s.progress, this.isPaused = !0, this.walkedDistance = 0, this.walkedDistanceTemp = 0, this.trackIndex = 0, this.listenedEvents = {
+b.TrackPlayer = class {
+  constructor(t, i = {}) {
+    this._initializeTrack(t), this.options = this._mergeOptions(i), this.initProgress = i.progress, this.addedToMap = !1, this.isPaused = !0, this.finished = !1, this.walkedDistance = 0, this.walkedDistanceTemp = 0, this.trackIndex = 0, this.startTimestamp = 0, this.pauseTimestamp = 0, this.events = {
       start: [],
       pause: [],
       finished: [],
-      progressCallback: []
+      progress: []
     };
   }
-  addTo(e) {
-    if (this.addedToMap) return;
-    if (this.map = e, this.addedToMap = !0, this.options.markerIcon) {
-      let t = this.track.geometry.coordinates[0];
-      if (this.marker = _.marker([t[1], t[0]], {
-        icon: this.options.markerIcon
-      }).addTo(this.map), this.options.markerRotation) {
-        let n = this.track.geometry.coordinates;
-        this.marker.setRotationAngle(
-          T(n[0], n[1]) / 2 + this.options.markerRotationOffset / 2
-        ), this.marker.setRotationOrigin(
-          this.options.markerRotationOrigin
-        );
-      }
+  /**
+   * 初始化轨迹数据
+   */
+  _initializeTrack(t) {
+    const i = b.polyline(t)._latlngs;
+    this.track = O(
+      i.map(({ lng: e, lat: s }) => [e, s])
+    ), this.distanceSlice = this._calculateDistanceSlices(), this.distance = N(this.track);
+  }
+  /**
+   * 计算每个点的累积距离
+   */
+  _calculateDistanceSlices() {
+    const t = [0], i = this.track.geometry.coordinates;
+    for (let e = 1; e < i.length; e++) {
+      const s = O(i.slice(0, e + 1));
+      t.push(N(s));
     }
-    let s = this.track.geometry.coordinates.map(([t, n]) => [
-      n,
-      t
-    ]);
-    return this.notPassedLine = _.polyline(s, {
-      weight: this.options.weight,
-      color: this.options.notPassedLineColor
-    }).addTo(this.map), this.passedLine = _.polyline([], {
-      weight: this.options.weight,
-      color: this.options.passedLineColor
-    }).addTo(this.map), this.polylineDecorator = _.polylineDecorator(
-      s,
-      this.options.polylineDecoratorOptions
-    ).addTo(this.map), this.initProgress && this.setProgress(this.initProgress), this;
+    return t;
   }
-  remove() {
-    this.addedToMap && (this.addedToMap = !1, this.polylineDecorator.remove(), this.polylineDecorator = null, this.notPassedLine.remove(), this.notPassedLine = null, this.passedLine.remove(), this.passedLine = null, this.marker && (this.marker.remove(), this.marker = null), this.finished = !1, this.startTimestamp = 0, this.pauseTimestamp = 0, this.walkedDistanceTemp = 0, this.walkedDistance = 0, this.trackIndex = 0, this.isPaused = !0, this.options.progress = this.initProgress);
-  }
-  start() {
-    !this.isPaused && !this.finished || !this.addedToMap || ((this.options.progress === 0 || this.options.progress === 1) && (this.startTimestamp = 0, this.pauseTimestamp = 0, this.walkedDistanceTemp = 0, this.walkedDistance = 0), this.isPaused = !1, this.finished = !1, this.pauseTimestamp && this.startTimestamp && (this.startTimestamp = this.startTimestamp + (Date.now() - this.pauseTimestamp)), this.startAction(), this.listenedEvents.start.forEach((e) => e()), this.initProgress && this.setProgress(this.initProgress));
-  }
-  pause() {
-    this.isPaused || this.finished || (this.pauseTimestamp = Date.now(), this.isPaused = !0, this.listenedEvents.pause.forEach((e) => e()));
-  }
-  startAction() {
-    let e = this.distance, s = (t) => {
-      if (t && this.addedToMap) {
-        let n = e / this.options.speed * 3600 * 1e3;
-        this.startTimestamp || (this.startTimestamp = t);
-        let r = t - this.startTimestamp;
-        this.walkedDistance = e * (r / n) + this.walkedDistanceTemp, this.playAction();
-      }
-      !this.isPaused && !this.finished && requestAnimationFrame(s);
+  /**
+   * 合并配置选项
+   */
+  _mergeOptions(t) {
+    var i, e, s, n, h, c, u, l, f, v, g, w, o, r, a, d, p, y, m, P;
+    return {
+      speed: (i = t.speed) != null ? i : 600,
+      weight: (e = t.weight) != null ? e : 5,
+      passedLineWeight: (n = t.passedLineWeight) != null ? n : ((s = t.weight) != null ? s : 5) + 1,
+      notPassedLineWeight: (c = (h = t.notPassedLineWeight) != null ? h : t.weight) != null ? c : 5,
+      markerIcon: t.markerIcon,
+      showArrows: (u = t.showArrows) != null ? u : !0,
+      arrowColor: (l = t.arrowColor) != null ? l : "#fff",
+      arrowSize: (f = t.arrowSize) != null ? f : 5,
+      arrowOpacity: (v = t.arrowOpacity) != null ? v : 1,
+      polylineDecoratorOptions: (g = t.polylineDecoratorOptions) != null ? g : this._getDefaultDecoratorOptions(t),
+      passedLineColor: (w = t.passedLineColor) != null ? w : "#0000ff",
+      notPassedLineColor: (o = t.notPassedLineColor) != null ? o : "#ff0000",
+      passedLineOpacity: (r = t.passedLineOpacity) != null ? r : 1,
+      notPassedLineOpacity: (a = t.notPassedLineOpacity) != null ? a : 1,
+      panTo: (d = t.panTo) != null ? d : !0,
+      markerRotationOrigin: (p = t.markerRotationOrigin) != null ? p : "center",
+      markerRotationOffset: (y = t.markerRotationOffset) != null ? y : 0,
+      markerRotation: (m = t.markerRotation) != null ? m : !0,
+      progress: (P = t.progress) != null ? P : 0
     };
-    s();
   }
-  playAction(e = !1) {
-    if (this.isPaused && !e) return;
-    let s = this.distance;
-    this.trackIndex = this.distanceSlice.findIndex((r, o, f) => {
-      var u;
-      return this.walkedDistance >= r && this.walkedDistance < ((u = f[o + 1]) != null ? u : 1 / 0);
+  /**
+   * 获取默认装饰器选项
+   */
+  _getDefaultDecoratorOptions(t = {}) {
+    var s, n, h;
+    const i = (s = t.arrowSize) != null ? s : 5, e = Math.max(1, Math.min(3, Math.ceil(i / 3)));
+    return {
+      patterns: [
+        {
+          offset: 30,
+          repeat: 60,
+          symbol: b.Symbol.arrowHead({
+            pixelSize: i,
+            headAngle: 60,
+            polygon: !1,
+            pathOptions: {
+              stroke: !0,
+              weight: e,
+              color: (n = t.arrowColor) != null ? n : "#fff",
+              opacity: (h = t.arrowOpacity) != null ? h : 1
+            }
+          })
+        }
+      ]
+    };
+  }
+  /**
+   * 添加到地图
+   */
+  addTo(t) {
+    return this.addedToMap ? this : (this.map = t, this.addedToMap = !0, this._createMarker(), this._createLines(), this._createDecorator(), this.initProgress && this.setProgress(this.initProgress), this);
+  }
+  /**
+   * 创建标记点
+   */
+  _createMarker() {
+    if (!this.options.markerIcon) return;
+    const [t, i] = this.track.geometry.coordinates[0];
+    this.marker = b.marker([i, t], {
+      icon: this.options.markerIcon
+    }).addTo(this.map), this.options.markerRotation && this._setInitialMarkerRotation();
+  }
+  /**
+   * 设置初始标记旋转角度
+   */
+  _setInitialMarkerRotation() {
+    const t = this.track.geometry.coordinates, i = D(t[0], t[1]);
+    this.marker.setRotationAngle(
+      i / 2 + this.options.markerRotationOffset / 2
+    ), this.marker.setRotationOrigin(this.options.markerRotationOrigin);
+  }
+  /**
+   * 创建轨迹线
+   */
+  _createLines() {
+    const t = this.track.geometry.coordinates.map(([i, e]) => [
+      e,
+      i
+    ]);
+    this.notPassedLine = b.polyline(t, {
+      weight: this.options.notPassedLineWeight,
+      color: this.options.notPassedLineColor,
+      opacity: this.options.notPassedLineOpacity
+    }).addTo(this.map), this.passedLine = b.polyline([], {
+      weight: this.options.passedLineWeight,
+      color: this.options.passedLineColor,
+      opacity: this.options.passedLineOpacity
+    }).addTo(this.map);
+  }
+  /**
+   * 创建装饰器
+   */
+  _createDecorator() {
+    if (!this.options.showArrows) return;
+    const t = this.track.geometry.coordinates.map(([i, e]) => [
+      e,
+      i
+    ]);
+    this.polylineDecorator = b.polylineDecorator(
+      t,
+      this.options.polylineDecoratorOptions
+    ).addTo(this.map);
+  }
+  /**
+   * 从地图移除
+   */
+  remove() {
+    return this.addedToMap ? (this.addedToMap = !1, this._cleanup(), this._resetState(), this) : this;
+  }
+  /**
+   * 清理地图元素
+   */
+  _cleanup() {
+    var t, i, e, s;
+    (t = this.polylineDecorator) == null || t.remove(), (i = this.notPassedLine) == null || i.remove(), (e = this.passedLine) == null || e.remove(), (s = this.marker) == null || s.remove(), this.polylineDecorator = null, this.notPassedLine = null, this.passedLine = null, this.marker = null;
+  }
+  /**
+   * 重置状态
+   */
+  _resetState() {
+    this.finished = !1, this.startTimestamp = 0, this.pauseTimestamp = 0, this.walkedDistanceTemp = 0, this.walkedDistance = 0, this.trackIndex = 0, this.isPaused = !0, this.options.progress = this.initProgress;
+  }
+  /**
+   * 开始播放
+   */
+  start() {
+    return !this.isPaused && !this.finished || !this.addedToMap ? this : (this._prepareStart(), this.isPaused = !1, this.finished = !1, this._adjustTimestamp(), this._startAnimation(), this._emit("start"), this.initProgress && this.setProgress(this.initProgress), this);
+  }
+  /**
+   * 准备开始播放
+   */
+  _prepareStart() {
+    (this.options.progress === 0 || this.options.progress === 1) && (this.startTimestamp = 0, this.pauseTimestamp = 0, this.walkedDistanceTemp = 0, this.walkedDistance = 0);
+  }
+  /**
+   * 调整时间戳
+   */
+  _adjustTimestamp() {
+    this.pauseTimestamp && this.startTimestamp && (this.startTimestamp += Date.now() - this.pauseTimestamp);
+  }
+  /**
+   * 暂停播放
+   */
+  pause() {
+    return this.isPaused || this.finished ? this : (this.pauseTimestamp = Date.now(), this.isPaused = !0, this._emit("pause"), this);
+  }
+  /**
+   * 开始动画循环
+   */
+  _startAnimation() {
+    const t = this.distance, i = t / this.options.speed * 3600 * 1e3, e = (s) => {
+      if (s && this.addedToMap) {
+        this.startTimestamp || (this.startTimestamp = s);
+        const n = s - this.startTimestamp;
+        this.walkedDistance = Math.min(
+          t,
+          t * n / i + this.walkedDistanceTemp
+        ), this._updatePosition();
+      }
+      !this.isPaused && !this.finished && requestAnimationFrame(e);
+    };
+    requestAnimationFrame(e);
+  }
+  /**
+   * 更新位置
+   */
+  _updatePosition(t = !1) {
+    this.isPaused && !t || (this.distance, this._updateTrackIndex(), this._updateMarkerPosition(), this._updateLines(), this._updateDecorator(), this._updateMarkerRotation(), this._updateProgress(), this._checkCompletion());
+  }
+  /**
+   * 更新轨迹索引
+   */
+  _updateTrackIndex() {
+    this.trackIndex = this.distanceSlice.findIndex((t, i, e) => {
+      var s;
+      return this.walkedDistance >= t && this.walkedDistance < ((s = e[i + 1]) != null ? s : 1 / 0);
     });
-    let [t, n] = rt(this.track, this.walkedDistance).geometry.coordinates;
-    if (this.markerPoint = [n, t], this.options.panTo && this.map.panTo(this.markerPoint, {
-      animate: !1
-    }), this.marker && this.marker.setLatLng(this.markerPoint), this.walkedDistance >= s)
+  }
+  /**
+   * 更新标记位置
+   */
+  _updateMarkerPosition() {
+    var e;
+    const [t, i] = q(this.track, this.walkedDistance).geometry.coordinates;
+    this.markerPoint = [i, t], this.options.panTo && this.map.panTo(this.markerPoint, { animate: !1 }), (e = this.marker) == null || e.setLatLng(this.markerPoint);
+  }
+  /**
+   * 更新轨迹线
+   */
+  _updateLines() {
+    const t = this.distance;
+    if (this.walkedDistance >= t)
       this.notPassedLine.setLatLngs([]);
     else {
-      let r = V(this.track, this.walkedDistance);
+      const i = V(this.track, this.walkedDistance);
       this.notPassedLine.setLatLngs(
-        r.geometry.coordinates.map(([o, f]) => [f, o])
+        i.geometry.coordinates.map(([e, s]) => [s, e])
       );
     }
     if (this.walkedDistance > 0) {
-      let r = V(
+      const i = V(
         this.track,
         0,
         this.walkedDistance
       );
       this.passedLine.setLatLngs(
-        r.geometry.coordinates.map(([o, f]) => [f, o])
+        i.geometry.coordinates.map(([e, s]) => [s, e])
       );
     } else
       this.passedLine.setLatLngs([]);
-    if (this.polylineDecorator.setPaths([
+  }
+  /**
+   * 更新装饰器
+   */
+  _updateDecorator() {
+    !this.options.showArrows || !this.polylineDecorator || this.polylineDecorator.setPaths([
       ...this.passedLine.getLatLngs(),
       ...this.notPassedLine.getLatLngs()
-    ]), this.walkedDistance < s && this.options.markerRotation && this.marker) {
-      let r = 0;
-      r = T(
-        O([t, n]),
-        O(
-          this.track.geometry.coordinates[this.trackIndex + 1]
-        )
-      ), this.marker.setRotationAngle(
-        r / 2 + this.options.markerRotationOffset / 2
-      );
-    }
-    if (this.options.progress = Math.min(1, this.walkedDistance / s), this.listenedEvents.progressCallback.forEach(
-      (r) => r(
-        this.options.progress,
-        _.latLng(...this.markerPoint),
-        this.trackIndex
-      )
-    ), this.walkedDistance >= s && (this.walkedDistance = s, this.finished = !0, this.listenedEvents.finished.forEach((r) => r()), this.options.markerRotation && this.marker)) {
-      let r = this.track.geometry.coordinates, o = T(
-        O(r.at(-2)),
-        O(r.at(-1))
+    ]);
+  }
+  /**
+   * 更新标记旋转角度
+   */
+  _updateMarkerRotation() {
+    if (!this.options.markerRotation || !this.marker || this.walkedDistance >= this.distance)
+      return;
+    const t = this.trackIndex + 1;
+    if (t < this.track.geometry.coordinates.length) {
+      const i = q(this.track, this.walkedDistance).geometry.coordinates, e = this.track.geometry.coordinates[t], s = D(
+        A(i),
+        A(e)
       );
       this.marker.setRotationAngle(
-        o / 2 + this.options.markerRotationOffset / 2
+        s / 2 + this.options.markerRotationOffset / 2
       );
     }
   }
-  setSpeedAction(e) {
-    this.options.speed = e, this.walkedDistanceTemp = this.walkedDistance, this.startTimestamp = 0;
+  /**
+   * 更新播放进度
+   */
+  _updateProgress() {
+    this.options.progress = Math.min(
+      1,
+      this.walkedDistance / this.distance
+    ), this._emit(
+      "progress",
+      this.options.progress,
+      b.latLng(...this.markerPoint),
+      this.trackIndex
+    );
   }
-  setSpeed(e, s = 20) {
-    return N(this, null, function* () {
-      s && (clearTimeout(this.setSpeedTimeout), yield new Promise((t) => {
-        this.setSpeedTimeout = setTimeout(t, s);
-      })), this.setSpeedAction(e);
+  /**
+   * 检查是否完成
+   */
+  _checkCompletion() {
+    this.walkedDistance >= this.distance && (this.walkedDistance = this.distance, this.finished = !0, this._setFinalMarkerRotation(), this._emit("finished"));
+  }
+  /**
+   * 设置最终标记旋转角度
+   */
+  _setFinalMarkerRotation() {
+    if (!this.options.markerRotation || !this.marker) return;
+    const t = this.track.geometry.coordinates, i = D(
+      A(t.at(-2)),
+      A(t.at(-1))
+    );
+    this.marker.setRotationAngle(
+      i / 2 + this.options.markerRotationOffset / 2
+    );
+  }
+  /**
+   * 设置速度动作
+   */
+  _setSpeedAction(t) {
+    this.options.speed = t, this.walkedDistanceTemp = this.walkedDistance, this.startTimestamp = 0;
+  }
+  /**
+   * 设置播放速度
+   */
+  setSpeed(t, i = 20) {
+    return W(this, null, function* () {
+      return i && (clearTimeout(this.setSpeedTimeout), yield new Promise((e) => {
+        this.setSpeedTimeout = setTimeout(e, i);
+      })), this._setSpeedAction(t), this;
     });
   }
-  setProgress(e) {
-    this.addedToMap && (this.options.progress == 1 && e == 1 || this.options.progress == 0 && e == 0 || (this.options.progress = e, this.walkedDistanceTemp = this.distance * e, this.startTimestamp = 0, (this.isPaused || this.finished) && (this.walkedDistance = this.walkedDistanceTemp, this.isPaused ? this.playAction(!0) : (this.finished = !1, this.isPaused = !1, this.startAction()))));
+  /**
+   * 设置播放进度
+   */
+  setProgress(t) {
+    return this.addedToMap ? this.options.progress === 1 && t === 1 || this.options.progress === 0 && t === 0 ? this : (this.options.progress = t, this.walkedDistanceTemp = this.distance * t, this.startTimestamp = 0, (this.isPaused || this.finished) && (this.walkedDistance = this.walkedDistanceTemp, this.finished ? (this.finished = !1, this.isPaused = !1, this._startAnimation()) : this._updatePosition(!0)), this) : this;
   }
-  on(e, s) {
-    switch (e) {
-      case "start":
-        this.listenedEvents.start.push(s);
-        break;
-      case "pause":
-        this.listenedEvents.pause.push(s);
-        break;
-      case "finished":
-        this.listenedEvents.finished.push(s);
-        break;
-      case "progress":
-        this.listenedEvents.progressCallback.push(s);
-        break;
-    }
+  /**
+   * 注册事件监听器
+   */
+  on(t, i) {
+    return this.events[t] ? (this.events[t].push(i), this) : (console.warn(`Unknown event: ${t}`), this);
   }
-  off(e, s) {
-    if (!s) {
-      this.listenedEvents[e] = [];
-      return;
-    }
-    switch (e) {
-      case "start":
-        this.listenedEvents.start = this.listenedEvents.start.filter(
-          (t) => t !== s
-        );
-        break;
-      case "pause":
-        this.listenedEvents.pause = this.listenedEvents.pause.filter(
-          (t) => t !== s
-        );
-        break;
-      case "finished":
-        this.listenedEvents.finished = this.listenedEvents.finished.filter(
-          (t) => t !== s
-        );
-        break;
-      case "progress":
-        this.listenedEvents.progressCallback = this.listenedEvents.progressCallback.filter(
-          (t) => t !== s
-        );
-        break;
-    }
+  /**
+   * 移除事件监听器
+   */
+  off(t, i) {
+    return this.events[t] ? (i ? this.events[t] = this.events[t].filter(
+      (e) => e !== i
+    ) : this.events[t] = [], this) : (console.warn(`Unknown event: ${t}`), this);
+  }
+  /**
+   * 触发事件
+   */
+  _emit(t, ...i) {
+    this.events[t] && this.events[t].forEach((e) => e(...i));
+  }
+  /**
+   * 更新轨迹线样式
+   */
+  updateLineStyle(t = {}) {
+    if (!this.addedToMap) return this;
+    const {
+      passedLineColor: i,
+      notPassedLineColor: e,
+      passedLineWeight: s,
+      notPassedLineWeight: n,
+      passedLineOpacity: h,
+      notPassedLineOpacity: c
+    } = t;
+    return i !== void 0 && (this.options.passedLineColor = i, this.passedLine.setStyle({ color: i })), e !== void 0 && (this.options.notPassedLineColor = e, this.notPassedLine.setStyle({ color: e })), s !== void 0 && (this.options.passedLineWeight = s, this.passedLine.setStyle({ weight: s })), n !== void 0 && (this.options.notPassedLineWeight = n, this.notPassedLine.setStyle({ weight: n })), h !== void 0 && (this.options.passedLineOpacity = h, this.passedLine.setStyle({ opacity: h })), c !== void 0 && (this.options.notPassedLineOpacity = c, this.notPassedLine.setStyle({ opacity: c })), this;
+  }
+  /**
+   * 更新箭头样式
+   */
+  updateArrowStyle(t = {}) {
+    if (!this.addedToMap) return this;
+    const { color: i, size: e, opacity: s, show: n } = t;
+    return n !== void 0 && (this.options.showArrows = n, n && !this.polylineDecorator ? this._createDecorator() : !n && this.polylineDecorator && (this.polylineDecorator.remove(), this.polylineDecorator = null)), this.polylineDecorator && (i !== void 0 || e !== void 0 || s !== void 0) && (i !== void 0 && (this.options.arrowColor = i), e !== void 0 && (this.options.arrowSize = e), s !== void 0 && (this.options.arrowOpacity = s), this.polylineDecorator.remove(), this.options.polylineDecoratorOptions = this._getDefaultDecoratorOptions(this.options), this._createDecorator()), this;
+  }
+  /**
+   * 显示箭头
+   */
+  showArrows() {
+    return this.updateArrowStyle({ show: !0 });
+  }
+  /**
+   * 隐藏箭头
+   */
+  hideArrows() {
+    return this.updateArrowStyle({ show: !1 });
+  }
+  /**
+   * 获取当前状态
+   */
+  getState() {
+    return {
+      progress: this.options.progress,
+      isPaused: this.isPaused,
+      finished: this.finished,
+      speed: this.options.speed,
+      distance: this.distance,
+      walkedDistance: this.walkedDistance,
+      currentPosition: this.markerPoint ? b.latLng(...this.markerPoint) : null,
+      trackIndex: this.trackIndex
+    };
   }
 };
